@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="shopeeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF5722"/>
+      <stop offset="100%" stop-color="#EE4D2D"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#shopeeGrad)"/>
+  <!-- Shopping Bag -->
+  <path d="M44 46 C44 32, 84 32, 84 46" stroke="#FFFFFF" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <rect x="28" y="46" width="72" height="60" rx="14" fill="#FFFFFF"/>
+  <!-- Play Icon + Sparkle -->
+  <polygon points="56,60 78,76 56,92" fill="#EE4D2D"/>
+  <circle cx="88" cy="40" r="10" fill="#FFE600"/>
+  <path d="M88 34 L88 46 M82 40 L94 40" stroke="#000000" stroke-width="3" stroke-linecap="round"/>
+</svg>
+
