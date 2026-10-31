@@ -13,7 +13,10 @@ export default function ProductViewer({
   onAffiliateUrlChange,
   onProceedToScript,
   selectedImages,
-  onToggleImageSelect
+  onToggleImageSelect,
+  hasShopData,
+  shopName,
+  onSwitchToShop
 }) {
   const [copiedLink, setCopiedLink] = useState(false);
   const [copiedTitle, setCopiedTitle] = useState(false);
@@ -59,6 +62,22 @@ export default function ProductViewer({
 
   return (
     <div className="p-3.5 space-y-4">
+      {/* Return to Shop Button if Shop data exists */}
+      {hasShopData && onSwitchToShop && (
+        <button
+          onClick={onSwitchToShop}
+          className="w-full flex items-center justify-between bg-white border border-slate-200 hover:border-orange-300 hover:bg-orange-50/40 px-3 py-2 rounded-xl text-xs text-slate-700 shadow-xs transition-all group"
+        >
+          <div className="flex items-center gap-2">
+            <span className="text-shopee-primary font-bold">🏪 กลับไปดูสินค้าทั้งหมดในร้าน</span>
+            <span className="text-slate-400">({shopName || 'Shop Catalog'})</span>
+          </div>
+          <span className="text-shopee-primary text-[11px] font-semibold group-hover:translate-x-0.5 transition-transform">
+            ดูทั้งหมด →
+          </span>
+        </button>
+      )}
+
       {/* Extract Button Card */}
       <div className="bg-gradient-to-r from-orange-500 to-shopee-primary rounded-xl p-3 text-white shadow-sm">
         <div className="flex items-center justify-between mb-2">

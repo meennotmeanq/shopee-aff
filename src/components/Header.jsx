@@ -1,9 +1,20 @@
 import React from 'react';
-import { ShoppingBag, MessageSquare, Video, Settings, Sparkles } from 'lucide-react';
+import { ShoppingBag, MessageSquare, Video, Settings, Sparkles, Store } from 'lucide-react';
 
-export default function Header({ activeTab, setActiveTab, hasProduct }) {
+export default function Header({ 
+  activeTab, 
+  setActiveTab, 
+  hasProduct, 
+  hasShop, 
+  viewMode, 
+  onToggleViewMode 
+}) {
   const tabs = [
-    { id: 'product', label: 'สินค้า', icon: ShoppingBag },
+    { 
+      id: 'product', 
+      label: hasShop && !hasProduct ? 'ร้านค้า' : 'สินค้า', 
+      icon: hasShop && !hasProduct ? Store : ShoppingBag 
+    },
     { id: 'script', label: 'บท AI', icon: MessageSquare, badge: hasProduct },
     { id: 'video', label: 'วิดีโอ 8s', icon: Video },
     { id: 'settings', label: 'ตั้งค่า', icon: Settings }
@@ -54,7 +65,34 @@ export default function Header({ activeTab, setActiveTab, hasProduct }) {
           );
         })}
       </nav>
+
+      {/* Mode Sub-Switch (When both shop and product exist) */}
+      {activeTab === 'product' && hasShop && hasProduct && (
+        <div className="flex bg-slate-100 p-0.5 mx-3 my-1.5 rounded-lg text-xs font-medium border border-slate-200">
+          <button
+            onClick={() => onToggleViewMode('shop')}
+            className={`flex-1 py-1 rounded-md transition-all text-center flex items-center justify-center gap-1 ${
+              viewMode === 'shop'
+                ? 'bg-white text-shopee-primary shadow-xs font-bold'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <Store className="w-3 h-3" />
+            <span>หน้าร้านค้า</span>
+          </button>
+          <button
+            onClick={() => onToggleViewMode('product')}
+            className={`flex-1 py-1 rounded-md transition-all text-center flex items-center justify-center gap-1 ${
+              viewMode === 'product'
+                ? 'bg-white text-shopee-primary shadow-xs font-bold'
+                : 'text-slate-600 hover:text-slate-900'
+            }`}
+          >
+            <ShoppingBag className="w-3 h-3" />
+            <span>สินค้าที่เลือก</span>
+          </button>
+        </div>
+      )}
     </header>
   );
 }
-
